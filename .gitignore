@@ -1,8 +1,10 @@
+yi/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
+generator/temeplate.tcl
 # C extensions
 *.so
 
