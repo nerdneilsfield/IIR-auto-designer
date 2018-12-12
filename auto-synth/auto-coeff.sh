@@ -7,6 +7,7 @@ if [ -z $1 ] && [ -z $2 ]; then
 else
     uuidx=`uuidgen`
     coeffients=`cat $2`
+    echo $coeffients
     coeff2code $coeffients > /tmp/ee252/${uuidx}.vhd
     auto-synth /tmp/ee252/${uuidx}.vhd $1
     rm -rf /tmp/ee252/${uuidx}.vhd
