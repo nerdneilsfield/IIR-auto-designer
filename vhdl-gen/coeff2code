@@ -10,4 +10,5 @@ uuid2=`uuidgen`
 
 mcm_synth -nofs -gc $1 > /tmp/ee252/${uuid2}.txt
 
-vhdl-gen ${uuid1}.txt ${uuid2.txt}
+vhdl-gen ${uuid1}.txt ${uuid2}.txt
+
