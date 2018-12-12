@@ -1,0 +1,20 @@
+<html>
+	<head>
+	<title> Project Automata </title>
+	</head>
+<body>
+<form action="synth2" method="post">
+  <p>Coefficient: <input type="textarea" name="coefficient" /></p>
+  <p>Clock: <input type="text" name="clock" /></p>
+  <input type="submit" value="Submit" />
+</form>
+<br />
+<hr />
+<br />
+<form action="synthfile" method="post" enctype="multipart/form-data">
+  <p>Notice: <b> VHDL only </b>, Design name <b> TOP </b>, Clock name: <b> CLK </b> </p>
+  <p>VHDL code: <input type="file" name="vhdl" /></p>
+  <p>Clock: <input type="text" name="clock" /></p>
+  <input type="submit" value="Submit" />
+</form>
+</body>

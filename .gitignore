@@ -1,5 +1,9 @@
-.generator/setup.toml
-.generator/setup.tcl
+automata/__pycache__/
+automata/output.txt
+automata/zip/
+automata/qor/
+generator/setup.toml
+generator/setup.tcl
 .vscode
 yi/
 # Byte-compiled / optimized / DLL files
