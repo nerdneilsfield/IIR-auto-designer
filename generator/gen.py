@@ -24,7 +24,7 @@ with open('setup.toml', 'r') as file:
 template = Template(template_file)
 
 template_path = "read_file -format %s {%s}\n" % (
-    configs["file_type"], path.join(_base_dir, configs["path"]))
+    configs["file_type"], configs["path"])
 template_mid = template.render(
     clk=configs["clk_name"],
     design=configs["design"],
