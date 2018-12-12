@@ -18,7 +18,8 @@ else
     sed -i "s/CLOCK_PERIOD/$2/g" setup.tcl > /dev/null
     dc_shell-t -f setup.tcl
     clear
-    cat /tmp/ee252/$uuid/report/qor.txt
+    # cat /tmp/ee252/$uuid/report/qor.txt
+    cp /tmp/ee252/$uuid/report/qor.txt "auto-syntdate${real_time}_report.txt"
     zip -r "auto-syntdate${real_time}.zip" rtl output report setup.tcl
     mv "auto-syntdate${real_time}.zip"  $path
     cd $path
