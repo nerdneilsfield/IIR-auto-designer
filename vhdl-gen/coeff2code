@@ -1,0 +1,13 @@
+#!/bin/bash
+
+uuid1=`uuidgen`
+
+mkdir -p /tmp/ee252
+
+echo $1 | awk '{ for (i=1;i<=NF;i++)printf "%s\n",$i}' > /tmp/ee252/${uuid1}.txt
+
+uuid2=`uuidgen`
+
+mcm_synth -nofs -gc $1 > /tmp/ee252/${uuid2}.txt
+
+vhdl-gen ${uuid1}.txt ${uuid2.txt}
