@@ -1,0 +1,5 @@
+path = "rtl/code.vhd"
+file_type = "vhdl"
+clk_name = "CLK"
+design = "TOP"
+clock_period = "5"
