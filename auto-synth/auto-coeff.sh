@@ -9,6 +9,7 @@ else
     coeffients=`cat $2`
     echo $coeffients
     # coeff2code $coeffients > /tmp/ee252/${uuidx}.vhd
+    coeff2code $coeffients 
     # auto-synth /tmp/ee252/${uuidx}.vhd $1
     # rm -rf /tmp/ee252/${uuidx}.vhd
 fi
