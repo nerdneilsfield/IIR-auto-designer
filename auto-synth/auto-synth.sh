@@ -12,7 +12,7 @@ else
     mkdir -p /tmp/ee252/$uuid/output
     mkdir -p /tmp/ee252/$uuid/rtl
     cp /var/ee252/setup.tcl /tmp/ee252/$uuid/
-    cp $1 /tmp/ee252/$uuid/rtl/
+    cp $1 /tmp/ee252/$uuid/rtl/Top.vhd
     cp /var/ee252/REG.vhd /tmp/ee252/$uuid/rtl/
     cd /tmp/ee252/$uuid
     sed -i "s/CLOCK_PERIOD/$2/g" setup.tcl > /dev/null
