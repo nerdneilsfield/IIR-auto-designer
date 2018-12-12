@@ -19,7 +19,7 @@ else
     dc_shell-t -f setup.tcl
     clear
     # cat /tmp/ee252/$uuid/report/qor.txt
-    cp /tmp/ee252/$uuid/report/qor.txt "auto-syntdate${real_time}_report.txt"
+    cp /tmp/ee252/$uuid/report/qor.txt $path/"auto-syntdate${real_time}_report.txt"
     zip -r "auto-syntdate${real_time}.zip" rtl output report setup.tcl
     mv "auto-syntdate${real_time}.zip"  $path
     cd $path
