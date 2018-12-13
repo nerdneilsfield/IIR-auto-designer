@@ -8,12 +8,14 @@ class Task:
         if json_str == "":
             self.id = uuid.uuid1().hex
             self.L = {
-                "id" : "",
-                "dir": "",
-                "status": "",
-                "worker": "",
-                "inputs": "",
-                "outputs":"",
+                "id" : "", # id 
+                "dir": "", # operation dir
+                "action":"", # action
+                "next":"", # next action
+                "status": "", # status: finishing wait
+                "worker": "", # worker: worker id
+                "inputs": [], # inputs: input args
+                "outputs":[], # outputs: output args
                 "create_time": time.time(),
                 "update_time": time.time(),
             }
@@ -47,9 +49,17 @@ class Task:
     def getWorker(self):
         return self.L["worker"]
     def setWorker(self, worker):
-        return self.L["worker"]
+        self.L["worker"] = worker
     def getID(self):
         return self.id
+    def setAction(self, action):
+        self.L["action"] = action
+    def getAction(self):
+        return self.L["action"]
+    def setNextAction(self, nextAction):
+        self.L["next"] = nextAction
+    def getNextAction(self):
+        return self.L["next"]
     def __getitem__(self, i):
         return self.L.__getitem__(i)
     def __setitem__(self, i, value):
@@ -77,7 +87,14 @@ class TaskQueue:
         task_str = self.r.get(task_id)
         return (task_id, task_str)
 
-    def getLists(self, start=0, end=20):
+    def getLists(self, start=0, end=20, filter=None):
+        """getLists
+        
+        :param start:int start index 
+        :param end:int stop index
+        :param filter:a lambda function for filter output data
+        """
+        
         task_ids = self.r.lrange(self.configs["taskQueue"]["processList"], start, end)
         tasks = []
         for task_id in task_ids:
@@ -85,8 +102,21 @@ class TaskQueue:
         return tasks
 
     def updateTask(self, task_id, task_str):
+        """updateTask
+        if last_status and this_status not equal: update task.
+        if next_status is not empty append a new task to task queue
+        :param task_id:string(uuid) the id of task_id
+        :param task_str:string(json_str) the str(task)
+        """
         if self.r.exists(task_id):
-            self.r.set(task_id, task_str)
+            task_str_before = self.r.get(task_id)
+            task_before = Task(task_str_before)
+            task_after = Task(task_str)
+            if task_before.getStaus() != task_after.getStaus():
+                self.r.set(task_id, task_str)
+                if task_after.getStaus == "finish":
+                    if task_after.getNextAction != "":
+                        pass
         else:
             raise TaskQueue
 
